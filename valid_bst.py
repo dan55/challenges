@@ -4,28 +4,58 @@ Problem:
 Determine whether a binary tree is a binary search tree.
 
 
+Thoughts:
+
+If we go left, we better not encounter anything larger than what we just encountered, and vice versa.
+
+
 Sources:
 
 https://www.interviewcake.com/question/python/bst-checker
 
 https://www.hackerrank.com/challenges/ctci-is-binary-search-tree
 '''
+import unittest
 
-def is_valid_bst(head, lower_bound=float('-inf'), upper_bound=float('inf')):
+from helpers import bst
 
-	left = head.left
-	right = head.right
+def is_valid_bst(root, lower_bound=float('-inf'), upper_bound=float('inf')):
 
-	if left:
-		if left.val > lower_bound:
-			return False
+	if not root:
+		return True
 
-		is_valid_bst(left, left.val, upper_bound)
+	val, left, right = root.val, root.left, root.right
 
-	if head.right:
-		if right.val < upper_bound:
-			return False
+	if val < lower_bound or val > upper_bound:
+		return False
 
-		is_valid_bst(right, lower_bound, right.val)
+	return is_valid_bst(left, val, upper_bound) and is_valid_bst(right, lower_bound, val)
 
-	return True
+
+class ValidBSTChecker(unittest.TestCase):
+	
+	def setUp(self):
+		self.root = bst.BinaryTreeNode(50)
+
+		for val in [20, 30, 70, 80, 90]:
+			bst.bst_insert(self.root, bst.BinaryTreeNode(val))
+
+	def test_validity_checker_for_valid_bst(self):
+		self.assertTrue(is_valid_bst(self.root))
+
+	def test_validity_checker_for_invalid_bst(self):
+		# the example from interview cake
+		self.root.left.right = bst.BinaryTreeNode(60)
+
+		self.assertFalse(is_valid_bst(self.root))
+
+if __name__ == '__main__':
+	#unittest.main()
+
+	root = bst.BinaryTreeNode(50)
+
+	for val in [20, 30, 70, 80, 90]:
+		bst.bst_insert(root, bst.BinaryTreeNode(val))
+
+	bst.inorder(root)
+
