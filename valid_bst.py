@@ -6,7 +6,11 @@ Determine whether a binary tree is a binary search tree.
 
 Thoughts:
 
-If we go left, we better not encounter anything larger than what we just encountered, and vice versa.
+If we go left, we better not encounter anything larger than what we just encountered, 
+
+so we have a new upper bound. If we are in a right subtree, we should not find any smaller
+
+values, so we have a new lower bound.
 
 
 Sources:
