@@ -15,17 +15,14 @@ class BinaryTreeNode(object):
 		return str(self.val)
 
 def bst_insert(root, node):
-	if not root:
-		return
-
 	if node < root:
 		if root.left:
-			bst_insert(node.left, node)
+			bst_insert(root.left, node)
 		else:
 			root.left = node
 	else:
 		if root.right:
-			bst_insert(node.right, node)
+			bst_insert(root.right, node)
 		else:
 			root.right = node
 

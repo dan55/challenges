@@ -37,7 +37,7 @@ class ValidBSTChecker(unittest.TestCase):
 	def setUp(self):
 		self.root = bst.BinaryTreeNode(50)
 
-		for val in [20, 30, 70, 80, 90]:
+		for val in [30, 80, 20, 70, 90]:
 			bst.bst_insert(self.root, bst.BinaryTreeNode(val))
 
 	def test_validity_checker_for_valid_bst(self):
@@ -50,12 +50,5 @@ class ValidBSTChecker(unittest.TestCase):
 		self.assertFalse(is_valid_bst(self.root))
 
 if __name__ == '__main__':
-	#unittest.main()
-
-	root = bst.BinaryTreeNode(50)
-
-	for val in [20, 30, 70, 80, 90]:
-		bst.bst_insert(root, bst.BinaryTreeNode(val))
-
-	bst.inorder(root)
+	unittest.main()
 
