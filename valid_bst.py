@@ -29,7 +29,7 @@ def is_valid_bst(root, lower_bound=float('-inf'), upper_bound=float('inf')):
 	if val < lower_bound or val > upper_bound:
 		return False
 
-	return is_valid_bst(left, val, upper_bound) and is_valid_bst(right, lower_bound, val)
+	return is_valid_bst(left, lower_bound, val) and is_valid_bst(right, val, upper_bound)
 
 
 class ValidBSTChecker(unittest.TestCase):
