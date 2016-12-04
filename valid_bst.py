@@ -21,7 +21,7 @@ https://www.hackerrank.com/challenges/ctci-is-binary-search-tree
 '''
 import unittest
 
-from helpers import bst
+from data_structs import bst
 
 def is_valid_bst(root, lower_bound=float('-inf'), upper_bound=float('inf')):
 
