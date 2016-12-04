@@ -33,3 +33,13 @@ def inorder(root):
 	inorder(root.left)
 	print(root)
 	inorder(root.right)
+
+def get_arbitrary_tree_root():
+	vals = [24, 42, 12, 15, 54]
+
+	root = BinaryTreeNode(vals.pop(0))
+
+	for val in vals:
+		bst_insert(root, BinaryTreeNode(val))
+
+	return root
