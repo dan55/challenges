@@ -22,13 +22,24 @@ class TestReverseLinkedList(unittest.TestCase):
         return linked_list
 
     def testReverse(self):
-        #self.assertEqual(list(reverse_list(self.linked_list)), list(self.linked_list_reversed))
-        print reverse_list(self.linked_list)
-        print self.linked_list_reversed
-        pass
+        reversed = [] 
+
+        ptr = reverse_list(self.linked_list.head)
+
+        while ptr:
+            reversed.append(ptr.value)
+            ptr = ptr.next
+
+        self.assertEqual(reversed, list(self.linked_list_reversed))
 
     def testReverseOnEmptyList(self):
         self.assertEqual(reverse_list(None), None)
+
+    def testReverseOnListWithOneNode(self):
+        node = LinkedListNode(1)
+        linked_list = LinkedList(node)
+
+        self.assertEqual(node, reverse_list(linked_list.head))
 
 if __name__ == '__main__':
     unittest.main()

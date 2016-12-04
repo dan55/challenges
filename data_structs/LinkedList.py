@@ -22,6 +22,10 @@ class LinkedList(object):
 		# at last node
 		ptr.next = node
 
+	def __eq__(self, other):
+		import pdb; pdb.set_trace()
+		list(self) == list(other)
+
 	def __iter__(self):
 		ptr = self.head
 
