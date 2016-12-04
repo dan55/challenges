@@ -22,6 +22,13 @@ class LinkedList(object):
 		# at last node
 		ptr.next = node
 
+	def __iter__(self):
+		ptr = self.head
+
+		while ptr:
+			yield ptr.value
+			ptr = ptr.next
+
 	def __str__(self):
 		ret = ''
 		ptr = self.head

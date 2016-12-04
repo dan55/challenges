@@ -35,20 +35,3 @@ def reverse_list(head):
         current_node = next_node
 
     return previous_node
-
-
-vals = [i for i in range(1, 4)]
-
-linked_list_head = LinkedList.LinkedListNode(vals.pop(0))
-linked_list = LinkedList.LinkedList(linked_list_head)
-
-print(linked_list_head)
-
-for val in vals:
-    linked_list.insert(LinkedList.LinkedListNode(val))
-
-print(linked_list)
-import pdb; pdb.set_trace()
-linked_list.head = reverse_list(linked_list_head)
-
-print(linked_list)
