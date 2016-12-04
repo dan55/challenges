@@ -8,6 +8,14 @@ Thoughts:
 
 Remember to initialize previous_node to None to avoid confusion and then panic.
 
+Pay attention to the order of operations. Namely, the original pointer to the next
+
+node must be stored before the pointer is updated, or you will loop infinitely. 
+
+Additionally, the previous pointer must be advanced before the current pointer
+
+if you're doing the assignment as below.
+
 
 Source:
 
