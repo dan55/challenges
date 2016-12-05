@@ -1,3 +1,7 @@
+'''
+Thoughts: Useful to do some walking through lists if you're rusty.
+'''
+
 
 # Brute force: for every price, compare all later prices
 
