@@ -15,6 +15,9 @@ Thus, we walk through the list, and all of the pairs cancel to 0, leaving
 the number we're searching for.
 
 
+Can be used when 'you want to "cancel out" matching numbers'
+
+
 Sources:
 
 https://www.interviewcake.com/question/python/find-unique-int-among-duplicates
