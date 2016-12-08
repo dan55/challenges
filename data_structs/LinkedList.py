@@ -9,10 +9,14 @@ class LinkedListNode(object):
 
 class LinkedList(object):
 
-	def __init__(self, head):
+	def __init__(self, head=None):
 		self.head = head
 
 	def insert(self, node):
+		if not self.head:
+			self.head = node
+			return self.head
+
 		ptr = self.head
 
 		# while there is another node
@@ -22,8 +26,9 @@ class LinkedList(object):
 		# at last node
 		ptr.next = node
 
+		return self.head
+
 	def __eq__(self, other):
-		import pdb; pdb.set_trace()
 		list(self) == list(other)
 
 	def __iter__(self):
@@ -44,3 +49,11 @@ class LinkedList(object):
 		ret += str(ptr.value)
 
 		return ret
+
+def get_head_of_arbitrary_list():
+	_list = LinkedList()
+
+	for i in range(1, 5):
+		_list.insert(LinkedListNode(i))
+
+	return _list.head
