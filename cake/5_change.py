@@ -1,4 +1,10 @@
 '''
+Problem:
+
+Find all the ways to make an amount of change given various denominations.
+
+
+Thoughts:
 
 
 To determine the number of ways to make 5c, we record the number of ways to make 
@@ -19,6 +25,9 @@ Or something.
 Look at the tabulation provided by Inteview Cake, but ADD THE ARRAY INDICES!
 
 
+Source:
+
+https://www.interviewcake.com/question/python/coin
 '''
 
 def find_num_ways_to_make_change(amount, denoms):
@@ -28,9 +37,13 @@ def find_num_ways_to_make_change(amount, denoms):
     num_ways[0] = 1
 
     for denom in denoms:
+        # We can't make smaller amounts from larger
         for higher_amount in range(denom, amount + 1):
-            remainder = higher_amount - denom
-            num_ways[higher_amount] += num_ways[remainder]
+            # We can make the current amount with the current amt
+            # less the current denom plus all the ways of making 
+            # the remaining amount
+            remaining_change = higher_amount - denom
+            num_ways[higher_amount] += num_ways[remaining_change]
 
     return num_ways[amount]
 
@@ -38,7 +51,6 @@ def find_num_ways_to_make_change(amount, denoms):
 def main():
     amt = 5
     denoms = [1, 3, 5]
-    import pdb; pdb.set_trace()
     print find_num_ways_to_make_change(amt, denoms)
 
 if __name__ == '__main__':
