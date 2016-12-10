@@ -40,8 +40,25 @@ def get_max_val(items, capacity, cur_idx=None):
     # choose whichever of those options yields the higher value
     return max(max_with_item, max_without_item)
 
+def get_max_val_bottom_up(items, capacity):
+    max_value_at_capacity_i = [0] * (capacity + 1)
 
+    for cur_capacity in range(capacity + 1):
 
+        cur_max_val = 0
+
+        for item in items:
+            if item.weight <= cur_capacity:
+                remaining_capacity = cur_capacity - item.weight
+
+                max_val_using_item = item.value + max_value_at_capacity_i[remaining_capacity]
+
+                # To use the item or not to use
+                cur_max_val = max(max_val_using_item, cur_max_val)
+
+        max_value_at_capacity_i[cur_capacity] = cur_max_val
+
+    return max_value_at_capacity_i[capacity]
 
 def main():
     Item = namedtuple('Item', ['weight', 'value'])
@@ -52,10 +69,10 @@ def main():
         named_items.append(Item(item[0], item[1])) 
 
     capacity = 20
-    max_val = 265
+    max_val = 555
 
     print get_max_val(named_items, capacity) == max_val
-
+    print get_max_val_bottom_up(named_items, capacity)
 
 if __name__ == '__main__':
     main()
