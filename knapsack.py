@@ -1,9 +1,16 @@
 '''
 Problem: 
 
-Given the weights and values of a set of items and the capacity of a knapsack,
+The unbounded knapsack problem.
 
-find the combination of items that will maximize the value of the knapsack.
+
+Thoughts:
+
+In the recursive solution for this problem (as opposed to 0/1 knapsack), 
+
+we do not decrement the index when calculating the maximum value we can obtain, 
+
+because we're allowed to keep taking the same item. Is this not magic? 
 
 
 Source:
@@ -34,11 +41,12 @@ def get_max_val(items, capacity, cur_idx=None):
 
     # recursively determine the maximum values obtained 
     # both from using and not using the current item
-    max_with_item = cur_val + get_max_val(items, capacity - cur_weight, cur_idx - 1)
+    max_with_item = cur_val + get_max_val(items, capacity - cur_weight, cur_idx)
     max_without_item = get_max_val(items, capacity, cur_idx - 1)
 
     # choose whichever of those options yields the higher value
     return max(max_with_item, max_without_item)
+
 
 def get_max_val_bottom_up(items, capacity):
     max_value_at_capacity_i = [0] * (capacity + 1)
@@ -60,6 +68,7 @@ def get_max_val_bottom_up(items, capacity):
 
     return max_value_at_capacity_i[capacity]
 
+
 def main():
     Item = namedtuple('Item', ['weight', 'value'])
     unnamed_items = [(7, 160), (3, 90), (2, 15)]
@@ -71,8 +80,8 @@ def main():
     capacity = 20
     max_val = 555
 
-    print get_max_val(named_items, capacity) == max_val
-    print get_max_val_bottom_up(named_items, capacity)
+    print get_max_val(named_items, capacity) == get_max_val_bottom_up(named_items, capacity) == max_val
+
 
 if __name__ == '__main__':
     main()
