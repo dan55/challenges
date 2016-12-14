@@ -28,6 +28,27 @@ class LinkedList(object):
 
 		return self.head
 
+	def delete(self, val_of_node_to_del):
+		prev = None
+		cur = self.head
+
+		while cur and cur.value != val_of_node_to_del:
+			prev = cur
+			cur = cur.next 
+
+		# not at end / found node to del
+		if cur:
+			if not prev: # at head of list
+				self.head = cur.next
+				cur.next = None
+			#elif not cur.next # at last node
+			#	prev.next = 
+			else: 
+				tmp = cur
+				prev.next = cur.next
+
+				tmp.next = None
+
 	def __eq__(self, other):
 		list(self) == list(other)
 
@@ -50,10 +71,16 @@ class LinkedList(object):
 
 		return ret
 
-def get_head_of_arbitrary_list():
+def _generate_test_list():
 	_list = LinkedList()
 
 	for i in range(1, 5):
 		_list.insert(LinkedListNode(i))
 
-	return _list.head
+	return _list
+
+def get_head_of_arbitrary_list():
+	return _generate_test_list().head
+
+def get_arbitrary_linked_list():
+	return _generate_test_list()
