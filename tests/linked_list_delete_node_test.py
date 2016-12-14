@@ -25,21 +25,11 @@ class LinkedListDeleteNodeTest(unittest.TestCase):
         self.assertEqual(list(self.linked_list), self.test_deleted_end)
 
     def test_delete_first_node(self):
-        new_list_head = delete_node(self.linked_list.head, 0)
+        self.linked_list.head = delete_node(self.linked_list.head, 0)
 
         self.assertEqual(list(self.linked_list), self.test_deleted_head)
 
-class LinkedListMemberDeleteTest(unittest.TestCase):
-    def setUp(self):
-        self.linked_list = LinkedList()
-
-        for i in range(3):
-            self.linked_list.insert(LinkedListNode(i))
-
-        self.test_deleted_middle = [0, 2]
-        self.test_deleted_end = [0, 1]
-        self.test_deleted_head = [1, 2]
-
+class LinkedListMemberDeleteTest(LinkedListDeleteNodeTest, unittest.TestCase):
     def test_delete_middle_node(self):
         self.linked_list.delete(1)
 
