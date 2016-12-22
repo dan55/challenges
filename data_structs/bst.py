@@ -37,6 +37,32 @@ def inorder(root):
 	print(root)
 	inorder(root.right)
 
+def bfs_walk(root):
+	visited = []
+
+	nodes = [root]
+
+	while nodes:
+		next_node = nodes.pop(0)
+		visited.append(next_node)
+
+		if next_node.left:
+			nodes.append(next_node.left)
+
+		if next_node.right:
+			nodes.append(next_node.right)
+
+	return visited
+
+def post_order(root):
+    if not root:
+        return
+
+    print root.val
+    post_order(root.left)
+    post_order(root.right)
+
+
 def get_arbitrary_tree_root():
 	vals = [24, 42, 12, 15, 54]
 
