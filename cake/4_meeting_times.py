@@ -6,7 +6,7 @@ Merge ranges of tuples. Like the room scheduling problem, but can sort on start 
 
 Thoughts:
 
-Tuple unpacking is powerful.
+Tuple unpacking is powerful. And negative indexing.
 
 
 Source:
@@ -17,30 +17,19 @@ https://www.interviewcake.com/question/python/merging-ranges
 import unittest
 
 def merge_times(times):
-    merged = []
+    sorted_times = sorted(times)
 
-    times = sorted(times)
+    merged_times = [sorted_times[0]]
 
-    prev_start_time, prev_end_time = times.pop(0)
+    for current_start_time, current_end_time in sorted_times[1:]:
+        previous_start_time, previous_end_time = merged_times[-1]
 
-    for start_time, end_time in times:
-        # we're safe to add the range
-        # (i.e. we've found a result)
-        if start_time > prev_end_time: 
-            merged.append((prev_start_time, prev_end_time))
+        if current_start_time > previous_end_time: # no conflict
+            merged_times.append((current_start_time, current_end_time))
+        else:
+            merged_times[-1] = ((previous_start_time, max(previous_end_time, current_end_time)))
 
-            prev_start_time = start_time
-            prev_end_time = end_time
-        else: 
-            # preserve the earlier start time
-            # the max handles the case in which an earlier
-            # time completely 'subsumes' a later time
-            prev_end_time = max(prev_end_time, end_time)
-
-    # handle the final range, which must be safe to add
-    merged.append((prev_start_time, prev_end_time))
-
-    return merged
+    return merged_times
 
 class UnitTest(unittest.TestCase):
     def test_that_the_func_works(self):
