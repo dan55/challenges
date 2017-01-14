@@ -26,20 +26,19 @@ import unittest
 def product_of_all_but_idx(arr):
     len_of_arr = len(arr)
 
-    prods = [1] * len_of_arr
+    prods = [None] * len_of_arr
 
     # generate all the products before the index
-    prod_so_far = arr[0]
-    idx = 1
+    prod_so_far = 1
 
-    for idx in range(1, len_of_arr):
+    for idx in range(len_of_arr):
         prods[idx] = prod_so_far
         prod_so_far *= arr[idx]
 
 
     # generate all the products after the index
-    prod_so_far = arr[len_of_arr - 1]
-    idx = len_of_arr - 2
+    prod_so_far = 1
+    idx = len_of_arr - 1
     
     while idx >= 0:
         prods[idx] *= prod_so_far
