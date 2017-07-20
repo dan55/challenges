@@ -53,12 +53,29 @@ def get_permutations(string):
     return permutations
 
 
+#https://stackoverflow.com/a/37799172/6781104
+def my_fav(string):
+    if len(string) <= 1:
+        return [string]
+    else:
+        perms = []
+        for perm in my_fav(string[:-1]):
+            for i in range(len(perm) + 1):
+                perms.append(perm[:i] + string[-1] + perm[i:])
+
+        return perms
+
+
 def main():
     import itertools
 
     string = 'abc'
     
-    print  set(get_permutations(string)) == set([''.join(perm) for perm in get_permutations(string)])
+    #print get_permutations(string)
+    #print  set(get_permutations(string)) == set([''.join(perm) for perm in get_permutations(string)])
+    print [''.join(perm) for perm in get_permutations(string)]
+    print my_fav(string)
+
 
 if __name__ == '__main__':
     main()
